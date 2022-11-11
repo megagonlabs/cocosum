@@ -72,7 +72,7 @@ python decode.py \
   gen/cont/codec/ \  # directory to store generated summaries
   megagonlabs/cocosum-cont-few \  # Target model
   --counter_model_checkpoint megagonlabs/cocosum-cont-few \  # Counterpart model
-  --alpha 0.5 \  # hyper-parameter
+  --alpha 0.2 \  # hyper-parameter
   --top_p 0.9
 
 # Co-Decoding for Common Opinion Summarization  
@@ -82,7 +82,7 @@ python decode.py \
   gen/comm/codec \
   megagonlabs/cocosum-comm-few \  # Target model
   --counter_model_checkpoint megagonlabs/cocosum-cont-few \  # Counterpart model. The contrastive summarization model is used in this case.
-  --alpha 0.5 \  # hyper-parameter
+  --alpha 0.4 \  # hyper-parameter
   --top_p 0.9 \
   --do_ens_tgt \
   --do_ens_cnt \
@@ -168,7 +168,7 @@ python decode.py \
   gen/cont/codec/ \  # directory to store generated summaries
   log/cont/few/lightning_logs/version_0/checkpoints/ \  # Target model
   --counter_model_checkpoint log/cont/few/lightning_logs/version_0/checkpoints/ \  # Counterpart model
-  --alpha 0.5 \  # hyper-parameter
+  --alpha 0.2 \  # hyper-parameter
   --top_p 0.9
 
 # Co-Decoding for Common Opinion Summarization  
@@ -178,7 +178,7 @@ python decode.py \
   gen/comm/codec \
   ./log/comm/few/lightning_logs/version_0/checkpoints/ \  # Target model
   --counter_model_checkpoint log/cont/few/lightning_logs/version_0/checkpoints/ \  # Counterpart model. The contrastive summarization model is used in this case.
-  --alpha 0.5 \  # hyper-parameter
+  --alpha 0.4 \  # hyper-parameter
   --top_p 0.9 \
   --do_ens_tgt \
   --do_ens_cnt \
