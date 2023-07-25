@@ -1,14 +1,13 @@
+import fire
 import json
+import nltk
+import numpy as np
 import os
 import re
 import string
 import unicodedata
 from multiprocessing import Pool, cpu_count
 from pathlib import Path
-
-import fire
-import nltk
-import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 from tqdm import tqdm
@@ -151,14 +150,15 @@ def pairing(data_dir):
     data = list(map(json.loads, open(data_dir / "train_comm_all.jsonl")))
     tgt = [x["tgt"] for x in data]
     tgt_vec = TfidfVectorizer().fit_transform(tgt)
-    sim = np.argsort((tgt_vec @ tgt_vec.T).toarray(), axis=1)
+    nn = NearestNeighbors(n_neighbors=2)
+    nn.fit(tgt_vec)
+    _, idxes = nn.kneighbors(tgt_vec)
+
     with open(data_dir / "train_comm_pair.jsonl", "w") as file:
-        for i, x in enumerate(sim[:, ::-1]):
-            for j in range(len(x)):
-                if i != x[j]:
-                    ins = data[i]
-                    ins["counter"] = data[x[j]]["src"]
-                    break
+        for i, x in enumerate(idxes):
+            j = int(i == x[0])
+            ins = data[i]
+            ins["counter"] = data[x[j]]["src"]
             print(json.dumps(ins), file=file)
 
 
