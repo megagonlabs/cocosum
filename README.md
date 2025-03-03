@@ -4,7 +4,7 @@
 [![arXiv](https://img.shields.io/badge/arxiv-2110.07520-success)](https://arxiv.org/abs/2110.07520/)
 
 This repository contains the dataset, source code and trained
-model [Comparative Opinion Summarization via Collaborative Decoding](https://arxiv.org/pdf/2110.07520/).
+model [Comparative Opinion Summarization via Collaborative Decoding](https://arxiv.org/pdf/2110.07520).
 
 ![CoCoSum](./img/task.png)
 
